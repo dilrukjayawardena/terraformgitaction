@@ -53,10 +53,11 @@ permissions:
   contents: write
 
 jobs:
+
   terraform:
     name: 'Terraform'
     runs-on: ubuntu-latest
-    if: github.actor != ${{github.actor}}
+    if: "!contains(github.event.head_commit.message, 'terraform format')"
     environment: production
 
     # Use the Bash shell regardless whether the GitHub Actions runner is ubuntu-latest, macos-latest, or windows-latest
@@ -90,5 +91,5 @@ jobs:
           git config user.name ${{github.actor}}
           git config user.email ${{github.actor}}@users.noreply.github.com
           git add *
-          git commit -m "erraform format"
+          git commit -m "terraform format"
           git push
