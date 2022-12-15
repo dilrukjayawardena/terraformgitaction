@@ -88,5 +88,4 @@ jobs:
           git config user.email github-actions@github.com
           git add *.tf
           git commit -m "erraform format"
-          git pull
           git push
