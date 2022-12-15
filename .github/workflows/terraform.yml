@@ -82,11 +82,11 @@ jobs:
     - name: Terraform Format
       run: terraform fmt
       
-    # commiting the changes back 
-    - name: Commit changes
-      uses: EndBug/add-and-commit@v9
-      with:
-        committer_name: GitHub Actions
-        committer_email: actions@github.com
-        message: 'terraform formatted '
-        add: '*'
+    - uses: actions/checkout@v3
+    - run: |
+          git config user.name github-actions
+          git config user.email github-actions@github.com
+          git add *.tf
+          git commit -m "erraform format"
+          git pull
+          git push
